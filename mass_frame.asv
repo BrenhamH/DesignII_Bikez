@@ -16,34 +16,36 @@ tube_thick = [];
 tube_diam = [];
 
 tube_weightpf = [];
-
 seat_weight = [];
+
+biketotal_len = totalframe_len+tire_diam;
+
+totalframe_len = backframe_len+frontframe_len;
+
+baxl_len = (backframe_width)/3;
+
+backframe_hyp = sqrt((baxl_len^2)+(backframe_len^2));
+
+
+tube_sa = pi*((tube_diam/2)^2)-pi*(((tube_diam/2)-tubethick)^2);
 
 seat_height = [];
 
 steerhub_mass = [];
 
+steercolumn_len = sqrt(frontframe_len^2 + seat_height^2);
+
+tire_diam = 26;
+
 seat_len = [];
 
 gear_diam = [];
 
-seatbarhigh_len = [];
-
-tire_diam = [];
-
-baxl_len = (backframe_width)/3;
-
-totalframe_len = backframe_len+frontframe_len;
-
-backframe_hyp = sqrt((baxl_len^2)+(backframe_len^2));
-
-tube_sa = pi*((tube_diam/2)^2)-pi*(((tube_diam/2)-tube_thick)^2);
-
-steercolumn_len = sqrt(frontframe_len^2 + seat_height^2);
-
 chain_len = 2*steercolumn_len+(pi*gear_diam);
 
 seatbarlow_len = seatbarhigh_len-1;
+
+seatbarhigh_len = [];
 
 backframtubes_len = 4*(baxl_len)+2*(backframe_hyp);
 
@@ -55,4 +57,3 @@ steercolumn_weight = (tube_sa)*(steercolumn_len)*(tube_weightpf);
 
 steerhub_weight = steercolumn_weight/2;
 
-biketotal_len = totalframe_len+tire_diam;
