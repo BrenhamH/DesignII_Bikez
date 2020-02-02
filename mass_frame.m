@@ -7,37 +7,29 @@ backframe_len = [];
 
 frontframe_len = []; 
 
-frontframe_hyp = []; 
-
-backframe_width = [];
-
-tube_thick = [];
-
-tube_diam = [];
-
-tube_weightpi = [];
+seat_width = [];
 
 seat_weight = [];
 
 seat_height = [];
 
-steerhub_mass = [];
-
-seat_len = [];
-
 gear_diam = [];
 
-seatbarhigh_len = [];
+seatbarhigh_len = []; %how high off the frame we want the front of the seat
 
 tire_diam = [];
 
 tube_weightpf = [];
 
+frontframe_hyp = sqrt((seat_width/2)^2+frontframe_len^2); 
+
+baxl_len = seat_width/2;
+
 tube_weightpi = tube_weightpf/12;
 
-baxl_len = (backframe_width)/3;
+backframe_width = seat_width + 2*baxl_len;
 
-totalframe_len = backframe_len+frontframe_len;
+totalframe_len = backframe_len+frontframe_len+seat_width;
 
 backframe_hyp = sqrt((baxl_len^2)+(backframe_len^2));
 
@@ -47,15 +39,15 @@ chain_len = 2*steercolumn_len+(pi*gear_diam);
 
 seatbarlow_len = seatbarhigh_len-1;
 
-backframtubes_len = 4*(baxl_len)+2*(backframe_hyp);
+backframtubes_len = backframe_width+seat_width+2*(backframe_hyp);
 
-frontframtubes_len = 2*(frontframe_hyp)+2*(seat_len)+2*(baxl_len);
+frontframtubes_len = 2*(frontframe_hyp)+4*(seat_width);
 
 seatsupport_len = sqrt(backframe_len^2 + seat_height^2);
 
 steercolumn_weight = (steercolumn_len)*(tube_weightpi);
 
-steerhub_weight = steercolumn_weight/2;
+steerhub_weight = steercolumn_weight;
 
 biketotal_len = totalframe_len+tire_diam;
 
@@ -66,4 +58,4 @@ aboveframtubes_weight = aboveframtubes_len*tube_weightpi;
 bottomframtubes_weight = (backframtubes_len+frontframtubes_len)*tube_weightpi;
 
 %COM calculations use point at back of seat on bottom frame as origin
-bottomframtubes_comx = ((tube_weightpi*backframe_width)*backframe_len)+2*(
+%bottomframtubes_comx = ((tube_weightpi*backframe_width)*backframe_len)+2*(
