@@ -19,6 +19,8 @@ seatbarhigh_len = []; %how high off the frame we want the front of the seat
 
 tire_diam = [];
 
+tire_weight = [];
+
 tube_weightpf = [];
 
 frontframe_hyp = sqrt((seat_width/2)^2+frontframe_len^2); 
@@ -58,4 +60,4 @@ aboveframtubes_weight = aboveframtubes_len*tube_weightpi;
 bottomframtubes_weight = (backframtubes_len+frontframtubes_len)*tube_weightpi;
 
 %COM calculations use point at back of seat on bottom frame as origin
-%bottomframtubes_comx = ((tube_weightpi*backframe_width)*backframe_len)+2*(
+total_weight = aboveframtubes_weight+bottomframtubes_weight+(chain_len*.022)+(3*tire_weight)+steerhub_weight+seat_weight;
