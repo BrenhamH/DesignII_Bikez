@@ -1,7 +1,6 @@
 clc
 clear
 %all lengths are in"
-%tube_weightpi is lb/i
 %chain length given as total length of chain (both sides of loop)
 
 backframe_len = []; 
@@ -32,13 +31,15 @@ seatbarhigh_len = [];
 
 tire_diam = [];
 
+tube_weightpf = [];
+
+tube_weightpi = tube_weightpf/12;
+
 baxl_len = (backframe_width)/3;
 
 totalframe_len = backframe_len+frontframe_len;
 
 backframe_hyp = sqrt((baxl_len^2)+(backframe_len^2));
-
-tube_sa = pi*((tube_diam/2)^2)-pi*(((tube_diam/2)-tube_thick)^2);
 
 steercolumn_len = sqrt(frontframe_len^2 + seat_height^2);
 
@@ -52,7 +53,7 @@ frontframtubes_len = 2*(frontframe_hyp)+2*(seat_len)+2*(baxl_len);
 
 seatsupport_len = sqrt(backframe_len^2 + seat_height^2);
 
-steercolumn_weight = (tube_sa)*(steercolumn_len)*(tube_weightpi);
+steercolumn_weight = (steercolumn_len)*(tube_weightpi);
 
 steerhub_weight = steercolumn_weight/2;
 
@@ -60,6 +61,9 @@ biketotal_len = totalframe_len+tire_diam;
 
 aboveframtubes_len = seatsupport_len+seatbarlow_len+seatbarhigh_len+steercolumn_len;
 
-aboveframtubes_weight = aboveframtubes_len*tube_sa*tube_weightpi; %change pf to per inch
+aboveframtubes_weight = aboveframtubes_len*tube_weightpi;
 
-bottomframtubes_weight = (backframtubes_len+frontframtubes_len)*tube_sa*tube_weightpi;
+bottomframtubes_weight = (backframtubes_len+frontframtubes_len)*tube_weightpi;
+
+%COM calculations use point at back of seat on bottom frame as origin
+bottomframtubes_comx = ((tube_weightpi*backframe_width)*backframe_len)+2*(
